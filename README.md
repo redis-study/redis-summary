@@ -210,6 +210,8 @@
     - INFO : 레디스 버전과 운영체제, 연결된 클라이언트, 메모리 사용량, 저장소, 복제본, 키 스페이스에 대한 정보를 포함한 모든 레디스 서버 통계를 리턴한다.
         - 기본적으로 INFO 커맨드는 사용할 수 있는 모든 섹션을 보여준다.
         - 매개변수로 섹션 이름을 명세헤 결과를 제한할 수도 있다. (memory, cpu 등)
+    - CONFIG : 레디스 설정을 보여준다
+        - 사용법 : https://redis.io/commands/config-get
     - DBSIZE : 레디스 서버에 존재하는 키 개수를 리턴한다.
     - DEBUG SEGFAULT : 올바르지 않은 메모리 접근을 수행해 레디스 서버 프로세스를 종료한다.
         - 애플리케이션 개발 중 버그를 시뮬레이션 할 때 유용하다.
@@ -227,3 +229,43 @@
     - SETEX : 특정 키에 값을 저장할때 만료 시간도 함께 원자적으로 설정한다.
     - DEL : 하나 이상의 키를 레디스에서 삭제한다.
     - EXISTS : 특정 키가 존재하면 1을, 존재하지 않으면 0을 리턴한다.
+    - PING : PONG 문자열을 리턴한다. 레디스가 데이터를 교환할 수 있는 상태인지를 확인할 때 유용하다.
+    - MIGRATE 특정 키를 대상 레디스 서버로 옮긴다. 키를 저장할 레디스 서버에 키가 존재한다면 실패한다.
+    - SELECT : 클라이언트가 연결된 현재의 데이터베이스를 변경한다. (레디스는 기본적으로 다중 데이터베이스이다.)
+    - AUTH : 레디스에 연결할 수 있는 클라이언트를 허가(authorization)하는 데 사용된다.
+    - SCRIPT KILL : 루아 스크립트 실행을 종료한다.
+    - SHUTDOWN : 모든 클라이언트를 종료하고, 최대한 데이터를 저장하려고 한 후 레디스 서버를 종료한다.
+        - SAVE, NOSAVE 두개의 매개변수 중 하나를 받는다.
+    - OBJECT ENCODING : 주어진 키에서 사용중인 인코딩 값을 리턴한다.
+
+## 데이터 타입의 최적화
+- 레디스에서 모든 데이터 탙입은 메로리를 저장하거나 성능을 높이는 다양한 인코딩을 사용할 수 있다.
+- 예를 들어 단지 숫자만 갖는 문자열은 다른 인코딩을 사용하기 때문에 글자만 갖는 문자열보다 메모리를 덩 사용한다.
+- 데이터 타입은 레디스의 서버 설정에 정의된 임계 값을 기반으로 다양한 인코딩을 사용한다.
+- 보통 redis.conf 파일에서 이러한 설정들을 확인할 수 있다.
+- 문자열
+    - 문자열에서 사용 가능한 인코딩 정보는 int, embstr, raw 세가지이다.
+    - embstr은 40바이트보다 작은 문자열, raw는 40바이트보다 큰 문자열을 표현할 때 사용된다.
+- 리스트
+    - 리스트에서 사용 가능한 인코딩은 ziplist와 linked list가 있다.
+        - ziplist : 리스트 크기의 엘리먼트가 list-max-ziplist-entires 설정보다 작고, 리스트의 개별 바이트가 list-max-ziplist-value 설정보다 작다면 집 리스트가 사용된다.
+        - linked list : 리스트 크기의 엘리먼트가 list-max-ziplist-entires 설정보다 크거나, 리스트의 개별 엘리먼트의 바이트가 list-max-ziplist-value 설정보다 크면 linked list가 사용된다.
+    - 현재는 quick list만 사용된다고 하던데 조금 더 조사가 필요하다 (https://matt.sh/redis-quicklist)
+        - ziplist가 여러개 리스트로 되어 있는 형태라고 함.
+        - ziplist의 마지막보다 찾는 인덱스가 다음에 있으면 다음 ziplist로 이동하는 형식으로 다수를 skip하여 리스트 탐색 시간을 줄임
+- 셋
+    - 셋에서 사용 가능한 인코딩은 intset, hashtable이다.
+        - intset : 셋의 모든 엘리먼트가 정수고 셋의 개수가 set-max-intset-entries 설정보다 작으면 인트셋이 사용된다.
+        - hashtable : 셋의 엘리먼트 중 하나라도 정수가 아니거나, 셋의 개수가 set-max-intset-entries 설정보다 크면 해시테이블이 사용된다.
+- 해시
+    - 해시에서는 ziplist, hashtable 인코딩을 사용한다.
+        - ziplist : 해시의 필드 개수가 hash-max-ziplist-entries 설정보다 작고 해시의 필드 이름과 값이 hash-max-ziplist-value 설정보다 작으면 집 리스트가 사용된다.
+        - hashtable : 해시의 필드 개수가 hash-max-ziplist-entries 설정보다 크거나 해시의 필드 값 중 하나라도 hash-max-ziplist-value(바이트) 설정보다 크면 해시테이블이 사용된다.
+- 정렬된 셋
+    - sorted set에서 사용 가능한 인코딩은 ziplist, skiplist + hashtable 이다.
+        - ziplist : 정렬된 셋의 개수가 set-max-ziplist-entries 설정보다 작고, 정렬된 셋의 엘리먼트 값이 모두 zset-max-ziplist-value(바이트)설정보다 작으면 집리스트가 사용된다.
+        - skiplist + hashtable : 정렬된 셋의 개수가 set-max-ziplist-entries 설정보다 크거나 sorted set의 엘리먼트 값 중 하나라도 zset-max-ziplist-value(바이트) 설정보다 크면 skiplist + hashtable이 사용된다.
+- 강제로 인코딩을 ziplist로 전환시킬수는 있으나, 성능과 메모리 사용량에 대한 트레이드 오프이기 때문에 잘 생각해봐야 한다.
+- 테스트 이후 "INFO MEMORY" command를 통해 실제 메모리 사용량을 측정해 볼 수 있다.
+
+
