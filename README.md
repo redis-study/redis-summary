@@ -28,8 +28,22 @@
     - Atomic Prefix가 붙은 커맨드는 원자적 커맨드로서 서로 다른 두개의 클라이언트가 동일한 커맨드를 동시에 실행해도 동일한 값을 얻을 수 없다. 커맨드 간에는 어떠한 경합 조건도 없기 때문.
         - 레디스는 항상 한 번에 하나의 커맨드를 실행하는 싱글 스레드 기반으로 동작하기 때문에 항상 경합 조건이 발생하지 않는다.
 
-![String MSET, MGET](images/redis_string_MSET_MGET.png "String MSET, MGET")
-
+<div>
+    <center>
+        <img src="images/redis_string_MSET_MGET.png"/><br/>
+        (MSET, MGET)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_string_INCR_INCRBY_DECR_DECRBY_INCRBYFLOAT.png"/><br/>
+        (INCR, INCRBY, DECR, DECRBY, INCRBYFLOAT)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_string_EXPIRE_TTL.png"/><br/>
+        (EXPIRE, TTL)
+    </center>
+</div>
 
 - 리스트
     - 리스트는 간단한 콜랙션, 스택, 큐와 같이 동작할 수 있는 매우 유연한 데이터 타입이다.
@@ -53,6 +67,44 @@
             - 이를 이용해서 Message Queue처럼 이용 가능
             - 해당 부분 테스트 https://spring.io/guides/gs/messaging-redis/ 에서 확인 가능
 
+<div>
+    <center>
+        <img src="images/redis_list_LPUSH_RPUSH.png"/><br/>
+        (LPUSH, RPUSH)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_list_LLEN_LINDEX.png"/><br/>
+        (LLEN, LINDEX)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_list_LRANGE.png"/><br/>
+        (LRANGE)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_list_LPOP_RPOP.png"/><br/>
+        (LPOP, RPOP)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_list_BLPOP_subscribe_plus.png"/><br/>
+        (BLPOP)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_list_Message_Queue_Test_with_Spring_Boot_with_code.png"/><br/>
+        (Message Queue with Spring boot Code)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_list_Message_Queue_Test_with_Spring_Boot_with_pointer.png"/><br/>
+        (Message Queue with Spring boot Result)
+    </center>
+</div>
+<br/>
+
 - 해시
     - 해시는 필드를 값으로 매핑할 수 있기 때문에 객체를 저장하는데 훌륭한 데이터 구조다.
     - 해시는 메모리를 효율적으로 쓸 수 있고, 데이터를 빨리 찾을 수 있게 최적화 되어 있다.
@@ -71,7 +123,13 @@
         - HGETALL : 모든 필드 조회
         - HKEYS : 모든 필드 key 조회
         - HVALS : 모든 필드 value 조회
-
+<div>
+    <center>
+        <img src="images/redis_hash_HSET_HMSET_HINCRBY_HGET_HMGET_HDEL_HGETALL.png"/><br/>
+        (HSET, HMSET, HINCRBY, HGET, HMGET, HDEL, HGETALL)
+    </center>
+    <br/>
+</div>
 
 - 셋
     - 순서가 없고 동일한 물자열이 없는 콜렉션
@@ -89,6 +147,13 @@
         - SREM : 주어진 엘리먼트를 셋에서 삭제한 후 셋에 남아있는 엘리먼트의 개수를 리턴한다.
         - SCARD : 셋의 엘리먼트 갯수를 리턴한다. (cardinality)
         - SMEMBERS : 셋의 모든 엘리먼트를 배열로 리턴
+<div>
+    <center>
+        <img src="images/redis_set_SADD_SINTER_SDIFF_SUNION_SRANDMEMBER_SREM_SISMEMBER_SCARD_SMEMBERS.png"/><br/>
+        (SADD, SINGET, SDIFF, SUNION, SRANDOMEMBER, SREM, SISMEMBER, SCARD, SMEMBERS)
+    </center>
+    <br/>
+</div>
 
 - 정렬된 셋 (sorted set)
     - 정렬된 셋은 셋과 비슷하지만, 정렬된 셋의 모든 엘리먼트는 연관 점수를 가진다.
@@ -108,6 +173,13 @@
         - ZSCORE : 엘리먼트의 점수를 리턴한다.
         - ZRANK : 등수가 낮은 순으로 정렬된 엘리먼트의 등수를 리턴한다.
         - ZREVRANK : 등수가 높은 순에서 낮은 순으로 정렬된 엘리먼트의 등수를 리턴한다.
+<div>
+    <center>
+        <img src="images/redis_sorted_set_ZADD_ZRANGE_ZREVRANGE_ZREM_ZSCORE_ZRANK_ZREVRANK.png"/><br/>
+        (ZADD, ZRANGE, ZREVRANGE, ZREM, ZSCORE, ZRANK, ZREVRANK)
+    </center>
+    <br/>
+</div>
 
 - 비트맵
     - 비트맵은 레디스의 실제 데이터 타입이 아니다. 내부적으로 비트맵은 문자열이다.
@@ -125,6 +197,13 @@
         - GETBIT : 비트맵 오프셋 값을 리턴
         - BITCOUNT: 비트맵에 1로 표시된 모든 비트의 개수를 리턴
         - BITOP : 대상 키, 비트 연산, 해당 연산에 적용하고 결과를 대상 키에 저장할 키 목록 (OR, AND, XOR, NOT)
+<div>
+    <center>
+        <img src="images/redis_bitmap_SETBIT_GETBIT_BITCOUNT_BITOP.png"/><br/>
+        (SETBIT, GETBIT, BITCOUNT, BITOP, ZSCORE, ZRANK, ZREVRANK)
+    </center>
+    <br/>
+</div>
 
 - 하이퍼로그로그
     - 레디스의 실제 데이터 타입이 아니다. 하이퍼로그로그는 개념적으로는 알고리즘이다.
@@ -146,6 +225,18 @@
         - PFCOUNT : 하나 이상의 키를 매게 변수로 받고, 근사치 개수를 리턴한다.
             - 다중 키를 명세하면 고유 엘리먼트 개수를 계산하기 위해 근사치 개수로 리턴한다.
         - PFMERGE : 대상키와 하나 이상의 하이퍼로그로그 키를 매게변수로 받아야 하며, 모든 하이퍼로그를 병합하고, 병합한 결과를 대상 키에 저장한다.
+<div>
+    <center>
+        <img src="images/redis_hyperloglog_PFADD_PFCOUNT_PFMERGE.png"/><br/>
+        (PFADD, PFCOUNT, PFRANGE)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_hyperloglog_vs_set.jpeg" width="600"/><br/>
+        (Hyperloglog와 set 비교)
+    </center>
+    <br/>
+</div>
 
 ## 커맨드
 - Pub/Sub
@@ -165,6 +256,19 @@
             - PUBSUB CHANNELS [pattern] : 동작중인 모든 채널(최소 하나의 구독자 존재)을 리턴한다./
             - PUBSUB NUMSUB [channel-1, channel-2...] : 접속한 클라이언트의 개수를 리턴한다.
             - PUBSUB NUMPAT : PSUBSCRIBE 커맨드를 통해 접속한 클라이언트의 개수를 리턴한다.
+<div>
+    <center>
+        <img src="images/redis_command_PUBLISH_SUBSCRIBE_PUBSUB.png" width="1024"/><br/>
+        (command로 pub-sub 수행)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_command_pubsub_node.png" width="1024"/><br/>
+        (node로 pub-sub 구현 - sources/pub-sub/)
+    </center>
+    <br/>
+</div>
+            
 - 트랜젝션
     - 레디스의 트랜잭션은 순서대로 원자적으로 실행되는 커맨드의 열이다. 
     - MULTI, EXEC
@@ -181,6 +285,18 @@
         - WATCH가 커맨드는 주시받는 키를 표시하고 주시받는 키가 변경되지 않으면 EXEC 커맨드는 트랜잭션만 실행한다.
         - 주시받는 키가 변경되면 null을 리턴하고, 해당 커맨드를 다시 실행시켜야 한다.
         - UNWATCH 커맨드는 주시목록에 있는 키를 제거한다.
+<div>
+    <center>
+        <img src="images/redis_command_transaction_MULTI_EXEC_in_node.png" width="750"/><br/>
+        (node에서 멀티 exec 트랜젝션 테스트 sources/transaction/bank-transaction.js)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_command_transaction_WATCH_in_node.png" width="750"/><br/>
+        (node에서 watch 트랜젝션 테스트 sources/transaction/watch-transaction.js)
+    </center>
+    <br/>
+</div>
 
 - 파이프라인 (자바 라이브러리 조사 필요)
     - 레디스에서 파이프라인은 다중 커맨드를 레디스 서버에 한꺼번에 보내는 방법을 말하며, 개별 응답을 기다리지 않고 클라이언트에 의해 응답을 한꺼번에 읽을 수 있다.
@@ -208,6 +324,23 @@
         - redis.pcall : redis.call 함수와 비슷하지만 에러가 발생할 때 루아 테이블로 에러를 리턴하고 스크립트를 계속 진행한다.
     - 루아 스크립트를 실행하는 2개의 커맨드는 EVAL, EVALSHA가 있다.
         - EVAL은 단순 루아 스크립트 실행인 반면 EVALSHA는 SCRIPT LOAD 커맨드가 리턴한 식별자를 기반으로 루아 스크립트를 실행한다.
+<div>
+    <center>
+        <img src="images/redis_command_lua_script.png" width="750"/><br/>
+        (node에서 lua script in redis 테스트 sources/lus-script/intro-lua.js)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_command_lua_script_EVALSHA.png" width="750"/><br/>
+        (node에서 lua script 를 이용하여 zpop 수행 sources/lus-script/zpop-lua.js)
+    </center>
+    <br/>
+    <center>
+        <img src="images/redis_command_lua_script_EVALSHA.png" width="750"/><br/>
+        (node에서 lua script evalsha를 이용하여 zpop 수행 sources/lus-script/zpop-lua-evalsha.js)
+    </center>
+    <br/>
+</div>
 
 - 기타 커맨드
     - INFO : 레디스 버전과 운영체제, 연결된 클라이언트, 메모리 사용량, 저장소, 복제본, 키 스페이스에 대한 정보를 포함한 모든 레디스 서버 통계를 리턴한다.
@@ -240,6 +373,13 @@
     - SHUTDOWN : 모든 클라이언트를 종료하고, 최대한 데이터를 저장하려고 한 후 레디스 서버를 종료한다.
         - SAVE, NOSAVE 두개의 매개변수 중 하나를 받는다.
     - OBJECT ENCODING : 주어진 키에서 사용중인 인코딩 값을 리턴한다.
+<div>
+    <center>
+        <img src="images/redis_command_config.png" width="400"/><br/>
+        (max entries 관련한 config 조회)
+    </center>
+    <br/>
+</div>
 
 ## 데이터 타입의 최적화
 - 레디스에서 모든 데이터 탙입은 메로리를 저장하거나 성능을 높이는 다양한 인코딩을 사용할 수 있다.
@@ -249,6 +389,13 @@
 - 문자열
     - 문자열에서 사용 가능한 인코딩 정보는 int, embstr, raw 세가지이다.
     - embstr은 40바이트보다 작은 문자열, raw는 40바이트보다 큰 문자열을 표현할 때 사용된다.
+<div>
+    <center>
+        <img src="images/redis_dataType_string.png" width="750"/><br/>
+        (string 데이터 타입)
+    </center>
+    <br/>
+</div>
 - 리스트
     - 리스트에서 사용 가능한 인코딩은 ziplist와 linked list가 있다.
         - ziplist : 리스트 크기의 엘리먼트가 list-max-ziplist-entires 설정보다 작고, 리스트의 개별 바이트가 list-max-ziplist-value 설정보다 작다면 집 리스트가 사용된다.
@@ -256,18 +403,46 @@
     - 현재는 quick list만 사용된다고 하던데 조금 더 조사가 필요하다 (https://matt.sh/redis-quicklist)
         - ziplist가 여러개 리스트로 되어 있는 형태라고 함.
         - ziplist의 마지막보다 찾는 인덱스가 다음에 있으면 다음 ziplist로 이동하는 형식으로 다수를 skip하여 리스트 탐색 시간을 줄임
+<div>
+    <center>
+        <img src="images/redis_dataType_list_책이랑다름.png" width="750"/><br/>
+        (list 데이터 타입 - 책에서 본 것과 다르다. 요즘은 전부 quick list라고 한다.)
+    </center>
+    <br/>
+</div>
 - 셋
     - 셋에서 사용 가능한 인코딩은 intset, hashtable이다.
         - intset : 셋의 모든 엘리먼트가 정수고 셋의 개수가 set-max-intset-entries 설정보다 작으면 인트셋이 사용된다.
         - hashtable : 셋의 엘리먼트 중 하나라도 정수가 아니거나, 셋의 개수가 set-max-intset-entries 설정보다 크면 해시테이블이 사용된다.
+<div>
+    <center>
+        <img src="images/redis_dataType_set.png" width="750"/><br/>
+        (set 데이터 타입)
+    </center>
+    <br/>
+</div>
 - 해시
     - 해시에서는 ziplist, hashtable 인코딩을 사용한다.
         - ziplist : 해시의 필드 개수가 hash-max-ziplist-entries 설정보다 작고 해시의 필드 이름과 값이 hash-max-ziplist-value 설정보다 작으면 집 리스트가 사용된다.
         - hashtable : 해시의 필드 개수가 hash-max-ziplist-entries 설정보다 크거나 해시의 필드 값 중 하나라도 hash-max-ziplist-value(바이트) 설정보다 크면 해시테이블이 사용된다.
+<div>
+    <center>
+        <img src="images/redis_dataType_hash.png" width="750"/><br/>
+        (set 데이터 타입)
+    </center>
+    <br/>
+</div>
 - 정렬된 셋
     - sorted set에서 사용 가능한 인코딩은 ziplist, skiplist + hashtable 이다.
         - ziplist : 정렬된 셋의 개수가 set-max-ziplist-entries 설정보다 작고, 정렬된 셋의 엘리먼트 값이 모두 zset-max-ziplist-value(바이트)설정보다 작으면 집리스트가 사용된다.
         - skiplist + hashtable : 정렬된 셋의 개수가 set-max-ziplist-entries 설정보다 크거나 sorted set의 엘리먼트 값 중 하나라도 zset-max-ziplist-value(바이트) 설정보다 크면 skiplist + hashtable이 사용된다.
+<div>
+    <center>
+        <img src="images/redis_dataType_sortedset.png" width="750"/><br/>
+        (set 데이터 타입)
+    </center>
+    <br/>
+</div>
 - 강제로 인코딩을 ziplist로 전환시킬수는 있으나, 성능과 메모리 사용량에 대한 트레이드 오프이기 때문에 잘 생각해봐야 한다.
 - 테스트 이후 "INFO MEMORY" command를 통해 실제 메모리 사용량을 측정해 볼 수 있다.
 
