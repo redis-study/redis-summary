@@ -427,8 +427,8 @@
         - hashtable : 해시의 필드 개수가 hash-max-ziplist-entries 설정보다 크거나 해시의 필드 값 중 하나라도 hash-max-ziplist-value(바이트) 설정보다 크면 해시테이블이 사용된다.
 <div>
     <p align="center">
-        <img src="images/redis_dataType_hash.png" width="750"/><br/>
-        (set 데이터 타입)
+        <img src="images/redis_dataType_hash.png" width="400"/><br/>
+        (hash 데이터 타입)
     </p>
     <br/>
 </div>
@@ -438,8 +438,8 @@
         - skiplist + hashtable : 정렬된 셋의 개수가 set-max-ziplist-entries 설정보다 크거나 sorted set의 엘리먼트 값 중 하나라도 zset-max-ziplist-value(바이트) 설정보다 크면 skiplist + hashtable이 사용된다.
 <div>
     <p align="center">
-        <img src="images/redis_dataType_sortedset.png" width="750"/><br/>
-        (set 데이터 타입)
+        <img src="images/redis_dataType_sortedset.png" width="400"/><br/>
+        (sorted set 데이터 타입)
     </p>
     <br/>
 </div>
