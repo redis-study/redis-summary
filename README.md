@@ -27,6 +27,7 @@
         - (Atomic) INCRBYFLOAT, DECRBYFLOAT : 주어진 부동소수점만큼 키값을 중가 혹은 감소시키고 변경시킨 값을 리턴한다.
     - Atomic Prefix가 붙은 커맨드는 원자적 커맨드로서 서로 다른 두개의 클라이언트가 동일한 커맨드를 동시에 실행해도 동일한 값을 얻을 수 없다. 커맨드 간에는 어떠한 경합 조건도 없기 때문.
         - 레디스는 항상 한 번에 하나의 커맨드를 실행하는 싱글 스레드 기반으로 동작하기 때문에 항상 경합 조건이 발생하지 않는다.
+
 ![String MSET, MGET](images/redis_string_MSET_MGET.png "String MSET, MGET")
 
 
