@@ -29,20 +29,20 @@
         - 레디스는 항상 한 번에 하나의 커맨드를 실행하는 싱글 스레드 기반으로 동작하기 때문에 항상 경합 조건이 발생하지 않는다.
 
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_string_MSET_MGET.png"/><br/>
         (MSET, MGET)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_string_INCR_INCRBY_DECR_DECRBY_INCRBYFLOAT.png"/><br/>
         (INCR, INCRBY, DECR, DECRBY, INCRBYFLOAT)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_string_EXPIRE_TTL.png"/><br/>
         (EXPIRE, TTL)
-    </center>
+    </p>
 </div>
 
 - 리스트
@@ -68,40 +68,40 @@
             - 해당 부분 테스트 https://spring.io/guides/gs/messaging-redis/ 에서 확인 가능
 
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_list_LPUSH_RPUSH.png"/><br/>
         (LPUSH, RPUSH)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_list_LLEN_LINDEX.png"/><br/>
         (LLEN, LINDEX)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_list_LRANGE.png"/><br/>
         (LRANGE)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_list_LPOP_RPOP.png"/><br/>
         (LPOP, RPOP)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_list_BLPOP_subscribe_plus.png"/><br/>
         (BLPOP)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_list_Message_Queue_Test_with_Spring_Boot_with_code.png"/><br/>
         (Message Queue with Spring boot Code)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_list_Message_Queue_Test_with_Spring_Boot_with_pointer.png"/><br/>
         (Message Queue with Spring boot Result)
-    </center>
+    </p>
 </div>
 <br/>
 
@@ -124,10 +124,10 @@
         - HKEYS : 모든 필드 key 조회
         - HVALS : 모든 필드 value 조회
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_hash_HSET_HMSET_HINCRBY_HGET_HMGET_HDEL_HGETALL.png"/><br/>
         (HSET, HMSET, HINCRBY, HGET, HMGET, HDEL, HGETALL)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -148,10 +148,10 @@
         - SCARD : 셋의 엘리먼트 갯수를 리턴한다. (cardinality)
         - SMEMBERS : 셋의 모든 엘리먼트를 배열로 리턴
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_set_SADD_SINTER_SDIFF_SUNION_SRANDMEMBER_SREM_SISMEMBER_SCARD_SMEMBERS.png"/><br/>
         (SADD, SINGET, SDIFF, SUNION, SRANDOMEMBER, SREM, SISMEMBER, SCARD, SMEMBERS)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -174,10 +174,10 @@
         - ZRANK : 등수가 낮은 순으로 정렬된 엘리먼트의 등수를 리턴한다.
         - ZREVRANK : 등수가 높은 순에서 낮은 순으로 정렬된 엘리먼트의 등수를 리턴한다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_sorted_set_ZADD_ZRANGE_ZREVRANGE_ZREM_ZSCORE_ZRANK_ZREVRANK.png"/><br/>
         (ZADD, ZRANGE, ZREVRANGE, ZREM, ZSCORE, ZRANK, ZREVRANK)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -198,10 +198,10 @@
         - BITCOUNT: 비트맵에 1로 표시된 모든 비트의 개수를 리턴
         - BITOP : 대상 키, 비트 연산, 해당 연산에 적용하고 결과를 대상 키에 저장할 키 목록 (OR, AND, XOR, NOT)
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_bitmap_SETBIT_GETBIT_BITCOUNT_BITOP.png"/><br/>
         (SETBIT, GETBIT, BITCOUNT, BITOP, ZSCORE, ZRANK, ZREVRANK)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -226,15 +226,15 @@
             - 다중 키를 명세하면 고유 엘리먼트 개수를 계산하기 위해 근사치 개수로 리턴한다.
         - PFMERGE : 대상키와 하나 이상의 하이퍼로그로그 키를 매게변수로 받아야 하며, 모든 하이퍼로그를 병합하고, 병합한 결과를 대상 키에 저장한다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_hyperloglog_PFADD_PFCOUNT_PFMERGE.png"/><br/>
         (PFADD, PFCOUNT, PFRANGE)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_hyperloglog_vs_set.jpeg" width="600"/><br/>
         (Hyperloglog와 set 비교)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -257,15 +257,15 @@
             - PUBSUB NUMSUB [channel-1, channel-2...] : 접속한 클라이언트의 개수를 리턴한다.
             - PUBSUB NUMPAT : PSUBSCRIBE 커맨드를 통해 접속한 클라이언트의 개수를 리턴한다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_command_PUBLISH_SUBSCRIBE_PUBSUB.png" width="1024"/><br/>
         (command로 pub-sub 수행)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_command_pubsub_node.png" width="1024"/><br/>
         (node로 pub-sub 구현 - sources/pub-sub/)
-    </center>
+    </p>
     <br/>
 </div>
             
@@ -286,15 +286,15 @@
         - 주시받는 키가 변경되면 null을 리턴하고, 해당 커맨드를 다시 실행시켜야 한다.
         - UNWATCH 커맨드는 주시목록에 있는 키를 제거한다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_command_transaction_MULTI_EXEC_in_node.png" width="750"/><br/>
         (node에서 멀티 exec 트랜젝션 테스트 sources/transaction/bank-transaction.js)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_command_transaction_WATCH_in_node.png" width="750"/><br/>
         (node에서 watch 트랜젝션 테스트 sources/transaction/watch-transaction.js)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -325,20 +325,20 @@
     - 루아 스크립트를 실행하는 2개의 커맨드는 EVAL, EVALSHA가 있다.
         - EVAL은 단순 루아 스크립트 실행인 반면 EVALSHA는 SCRIPT LOAD 커맨드가 리턴한 식별자를 기반으로 루아 스크립트를 실행한다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_command_lua_script.png" width="750"/><br/>
         (node에서 lua script in redis 테스트 sources/lus-script/intro-lua.js)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_command_lua_script_EVALSHA.png" width="750"/><br/>
         (node에서 lua script 를 이용하여 zpop 수행 sources/lus-script/zpop-lua.js)
-    </center>
+    </p>
     <br/>
-    <center>
+    <p align="center">
         <img src="images/redis_command_lua_script_EVALSHA.png" width="750"/><br/>
         (node에서 lua script evalsha를 이용하여 zpop 수행 sources/lus-script/zpop-lua-evalsha.js)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -374,10 +374,10 @@
         - SAVE, NOSAVE 두개의 매개변수 중 하나를 받는다.
     - OBJECT ENCODING : 주어진 키에서 사용중인 인코딩 값을 리턴한다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_command_config.png" width="400"/><br/>
         (max entries 관련한 config 조회)
-    </center>
+    </p>
     <br/>
 </div>
 
@@ -390,10 +390,10 @@
     - 문자열에서 사용 가능한 인코딩 정보는 int, embstr, raw 세가지이다.
     - embstr은 40바이트보다 작은 문자열, raw는 40바이트보다 큰 문자열을 표현할 때 사용된다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_dataType_string.png" width="750"/><br/>
         (string 데이터 타입)
-    </center>
+    </p>
     <br/>
 </div>
 - 리스트
@@ -415,10 +415,10 @@
         - intset : 셋의 모든 엘리먼트가 정수고 셋의 개수가 set-max-intset-entries 설정보다 작으면 인트셋이 사용된다.
         - hashtable : 셋의 엘리먼트 중 하나라도 정수가 아니거나, 셋의 개수가 set-max-intset-entries 설정보다 크면 해시테이블이 사용된다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_dataType_set.png" width="750"/><br/>
         (set 데이터 타입)
-    </center>
+    </p>
     <br/>
 </div>
 - 해시
@@ -426,10 +426,10 @@
         - ziplist : 해시의 필드 개수가 hash-max-ziplist-entries 설정보다 작고 해시의 필드 이름과 값이 hash-max-ziplist-value 설정보다 작으면 집 리스트가 사용된다.
         - hashtable : 해시의 필드 개수가 hash-max-ziplist-entries 설정보다 크거나 해시의 필드 값 중 하나라도 hash-max-ziplist-value(바이트) 설정보다 크면 해시테이블이 사용된다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_dataType_hash.png" width="750"/><br/>
         (set 데이터 타입)
-    </center>
+    </p>
     <br/>
 </div>
 - 정렬된 셋
@@ -437,10 +437,10 @@
         - ziplist : 정렬된 셋의 개수가 set-max-ziplist-entries 설정보다 작고, 정렬된 셋의 엘리먼트 값이 모두 zset-max-ziplist-value(바이트)설정보다 작으면 집리스트가 사용된다.
         - skiplist + hashtable : 정렬된 셋의 개수가 set-max-ziplist-entries 설정보다 크거나 sorted set의 엘리먼트 값 중 하나라도 zset-max-ziplist-value(바이트) 설정보다 크면 skiplist + hashtable이 사용된다.
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_dataType_sortedset.png" width="750"/><br/>
         (set 데이터 타입)
-    </center>
+    </p>
     <br/>
 </div>
 - 강제로 인코딩을 ziplist로 전환시킬수는 있으나, 성능과 메모리 사용량에 대한 트레이드 오프이기 때문에 잘 생각해봐야 한다.
