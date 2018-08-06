@@ -404,10 +404,10 @@
         - ziplist가 여러개 리스트로 되어 있는 형태라고 함.
         - ziplist의 마지막보다 찾는 인덱스가 다음에 있으면 다음 ziplist로 이동하는 형식으로 다수를 skip하여 리스트 탐색 시간을 줄임
 <div>
-    <center>
+    <p align="center">
         <img src="images/redis_dataType_list_책이랑다름.png" width="750"/><br/>
         (list 데이터 타입 - 책에서 본 것과 다르다. 요즘은 전부 quick list라고 한다.)
-    </center>
+    </p>
     <br/>
 </div>
 - 셋
