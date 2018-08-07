@@ -478,6 +478,13 @@
         - redis.conf에서 rename-command 설정을 통해 가능.
     - 이 이외에 네트워크 적으로 추가 보안을 적용하는 방법 등을 선택한다.
     - 한마디로 보안이 좀 약하다.
+<div>
+    <p align="center">
+        <img src="images/redis_requirepass.png" width="800"/><br/>
+        (약한 보안 requirepass)
+    </p>
+    <br/>
+</div>
 
 ## 레디스 확장하기
 - 저장
