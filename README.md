@@ -740,5 +740,20 @@
             - SUNION {user123}:all_friends {user123}:friends:usa user123}:friend:brazil
             - 이 방식은 user123이라는 해시태그(중괄호로 구분됨)를 기반으로 사용하기 때문에, 모든 키가 동일한 슬롯에 저장된다.
     
-
-    
+<div>
+    <p align="center">
+        <img src="images/redis_cluster_init_cluster.png" width="1024"/><br/>
+        (클러스터용 레디스 초기화)
+    </p>
+    <br/>
+    <p align="center">
+        <img src="images/redis_cluster_make_cluster.png" width="1024"/><br/>
+        (클러스터 생성)
+    </p>
+    <br/>
+    <p align="center">
+        <img src="images/redis_sentinel_master_slave.png" width="1024"/><br/>
+        (테스트용 마스터 슬레이브 레디스들)
+    </p>
+    <br/>
+</div>    
