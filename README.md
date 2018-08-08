@@ -811,5 +811,5 @@
     <br/>
 </div>
 
-- reference : **Redis 핵심정리** - *맥스웰 데이브슨 다 실바, 휴고 로페스 타바레스 지음 | 김용환 옮김*
-- authors : song2 (tkagksmsen)
+- Reference : **Redis 핵심정리** - *맥스웰 데이브슨 다 실바, 휴고 로페스 타바레스 지음 | 김용환 옮김*
+- Authors : song2 (tkagksmsen)
