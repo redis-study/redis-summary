@@ -798,7 +798,7 @@
         (노드 추가하고 클러스터 노드의 레플리카로 변경)
     </p>
     <br/>
-<   <p align="center">
+   <p align="center">
         <img src="images/redis_cluster_cant_mset.png" width="1024"/><br/>
         (레디스 클러스터 모드에서 mset, mget 불가)
     </p>
