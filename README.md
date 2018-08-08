@@ -739,6 +739,48 @@
             - SADD {user123}:friend:brazil "Max" "Hugo"
             - SUNION {user123}:all_friends {user123}:friends:usa user123}:friend:brazil
             - 이 방식은 user123이라는 해시태그(중괄호로 구분됨)를 기반으로 사용하기 때문에, 모든 키가 동일한 슬롯에 저장된다.
+        - 아래는 실제 레디스 클러스터를 생성하고 슬레이브를 만들고 command를 테스트 해본 결과이다.
+        - COMMAND
+            - master node 추가
+                - redis-server 
+                    --port [port] 
+                    --cluster-enabled yes 
+                    --cluster-config-file node-5000.conf 
+                    --cluster-node-timeout 2000 
+                    --cluster-slave-validity-factor 10 
+                    --cluster-migration-barrier 1 
+                    --cluster-require-full-coverage yes 
+                    --dbfilename dump-5000.rdb 
+                    --daemonize yes
+            - slot 지정
+                - CLUSTER ADDSLOT {[from]..[to]}
+            - 에포크 설정 (해시 슬롯에 대한 충돌이 있을 경우에 우선 순위)
+                - CLUSTER SET-CONFIG-EPOCH [epoch no]
+            - cluster join
+                - CLUSTER MEET [host] [port]
+            - cluster node 확인
+                - CLUSTER NODES
+            - slave 복제본 추가
+                - CLUSTER REPLICATE [node-id]
+                - 레디스 클러스터에서 읽기를 확장하기 위해 슬레이브에 연결해서 READONLY 커맨드로 슬레이브를 읽기 전용으로 변경할 수 있다.
+                - 슬레이브가 읽기 전용 모드일 때, 슬레이브는 자신이 처리할 수 있는 질의를 다른 노드로 전달하지 않는다.
+                - 처리할 수 없는 질의만 다른 곳으로 전달한다.
+                - 읽기 전용 모드의 유일한 단점은 데이터의 변경 또는 추가 시 새로운 값 대신 오래된 값을 읽을 수도 있다는 점이다.
+                - READWRITE 커맨드로 읽기 전용 모드를 종료할 수 있다.
+            - 슬롯 재샤딩 및 옮기기
+                - 해시 슬롯의 상태를 importing으로 변경 : CLUSTER SETSLOT [hash-slot] IMPORTING [source-id]
+                    - 해시 슬롯을 받는 곳에서 실행
+                - 해시 슬롯의 상태로 migrating으로 변경 : CLUSTER SETSLOT [hash-slot] MIGRATING [destinationd-id]
+                    - 해시 슬롯을 보내는 곳에서 실행
+                - 해시 슬롯을 노드에 보냄 : CLUSTER SETSLOT [hash-slot] NODE [owner-id]
+                    - source node와 destination node에서 둘 다 실행
+                - 해시 슬롯의 상태(importing, migrating)를 정리 : CLUSTER SETSLOT [hash-slot] STABLE
+            - 그 외 커맨드
+                - CLUSTER COUNTKEYSINSLOT [slot] 커맨드는 주어진 슬롯에 키 개수를 리턴한다.
+                - CLUSTER GETKEYSINSLOT [slot] [amount] 커맨드는 슬롯에 포함된 키 이름을 가진 배열을 명세한 크기만큼 리턴한다.
+                - MIGRATE [host] [port] [key] [db] [timeout] 커맨드는 키를 여러 레디스 인스턴스로 옮긴다.
+            - 노드 삭제
+                - CLUSTER FORGET [node-id]
     
 <div>
     <p align="center">
@@ -752,8 +794,13 @@
     </p>
     <br/>
     <p align="center">
-        <img src="images/redis_sentinel_master_slave.png" width="1024"/><br/>
-        (테스트용 마스터 슬레이브 레디스들)
+        <img src="images/redis_cluster_add_node_make_replica.png" width="1024"/><br/>
+        (노드 추가하고 클러스터 노드의 레플리카로 변경)
+    </p>
+    <br/>
+<   <p align="center">
+        <img src="images/redis_cluster_cant_mset.png" width="1024"/><br/>
+        (레디스 클러스터 모드에서 mset, mget 불가)
     </p>
     <br/>
 </div>    
