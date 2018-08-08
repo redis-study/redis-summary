@@ -108,21 +108,21 @@
 ### 3. 해시
 - 해시는 필드를 값으로 매핑할 수 있기 때문에 객체를 저장하는데 훌륭한 데이터 구조다.
 - 해시는 메모리를 효율적으로 쓸 수 있고, 데이터를 빨리 찾을 수 있게 최적화 되어 있다.
-- 해시에서 필드 이름과 값은 문자열이다. 따라서 해시는 문자열을 문자열로 매핑한다.
+- 해시에서 **필드 이름과 값은 문자열** 이다. 따라서 해시는 문자열을 문자열로 매핑한다.
 - hash-max-ziplist-entries, hash-max-ziplist-value 설정을 기반으로 한다. (뒤에 설명함)
-- 해시는 내부적으로 ziplist와 hash table이 될 수 있다.
+- 해시는 내부적으로 **ziplist** 와 **hash table**이 될 수 있다.
 - ziplist는 메모리 효율화에 목적을 둔 양쪽으로 연결된 리스트이다.
 - ziplist서는 정수를 일련의 문자로 저장하지 않고 실제 정수의 값으로 저장한다.
 - ziplist가 메모리 최적화가 돼 있다 할지라도 일정한 시간 내로 검색이 수행 되지는 않는다.
 - hash table에서는 일정한 시간 내로 검색은 되지만 메모리 최적화가 이루어지지 않는다.
 - Command
-    - HSET HMSET : 키로 값 등록 (single, multiple)
-    - HGET HMGET : 키로 값 조회 (single, multiple)
-    - HINCR, HINCRBY, HDECR, HDECRBY, HINCRBYFLOAT, HDECRBYFLOAT : 주어진 정수 혹은 부동소수점 만큼 필드를 증가 감소 시킴. (HINCR, HDECR은 1씩 증가 감소)
-    - HDEL : 해시에서 필드를 삭제
-    - HGETALL : 모든 필드 조회
-    - HKEYS : 모든 필드 key 조회
-    - HVALS : 모든 필드 value 조회
+    - **HSET HMSET** : 키로 값 등록 (single, multiple)
+    - **HGET HMGET** : 키로 값 조회 (single, multiple)
+    - **HINCR, HINCRBY, HDECR, HDECRBY, HINCRBYFLOAT, HDECRBYFLOAT** : 주어진 정수 혹은 부동소수점 만큼 필드를 증가 감소 시킴. (HINCR, HDECR은 1씩 증가 감소)
+    - **HDEL** : 해시에서 필드를 삭제
+    - **HGETALL** : 모든 필드 조회
+    - **HKEYS** : 모든 필드 key 조회
+    - **HVALS** : 모든 필드 value 조회
 <div>
     <p align="center">
         <img src="images/redis_hash_HSET_HMSET_HINCRBY_HGET_HMGET_HDEL_HGETALL.png"/><br/>
