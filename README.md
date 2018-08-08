@@ -1,7 +1,7 @@
 # redis-summary
 
 - redis는 고성능 key-value데이터 저장소인 NoSQL(Not Only SQL)
-- **문자열(string)**, **해시(hash)**, **리스트(list)**, **셋(set)**, **정렬된 셋(sorted set)**, **비트맵(bitmap)**, **하이퍼로그로그(hyperloglog)**와 같은 강력한 데이터 타입 때문에 데이터 구조 서버라고도 불린다.
+- **문자열(string)**, **해시(hash)**, **리스트(list)**, **셋(set)**, **정렬된 셋(sorted set)**, **비트맵(bitmap)**, **하이퍼로그로그(hyperloglog)** 와 같은 강력한 데이터 타입 때문에 데이터 구조 서버라고도 불린다.
 - 레디스는 기본적으로 모든 데이터를 메모리에 저장하기 때문에 일기와 쓰기 명령이 매우 빠르다.
 - 레디스는 디스크에도 데이터를 저장할 수 있다. 레디스 데이터의 **영속성(data persistance)**
 - help 커맨드는 도움말을 준다 keys 커맨드는 패턴과 일치하는 모든 키를 리턴하기 때문에 유용하다
