@@ -386,6 +386,7 @@
 - 예를 들어 단지 숫자만 갖는 문자열은 다른 인코딩을 사용하기 때문에 글자만 갖는 문자열보다 메모리를 덜 사용한다.
 - 데이터 타입은 레디스의 서버 설정에 정의된 임계 값을 기반으로 다양한 인코딩을 사용한다.
 - 보통 redis.conf 파일에서 이러한 설정들을 확인할 수 있다.
+- ziplist, quicklist, 압축된 quicklist 설명 (http://redisgate.kr/redis/configuration/internal_quicklist.php)
 ### 1. 문자열
 - 문자열에서 사용 가능한 인코딩 정보는 **int, embstr, raw** 세가지이다.
 - **embstr**은 40바이트보다 작은 문자열, **raw**는 40바이트보다 큰 문자열을 표현할 때 사용된다.
